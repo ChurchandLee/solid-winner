@@ -149,13 +149,14 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-       .thinking-heart {
+   .thinking-heart {
     font-size: 24px;
     animation: heartPulse 1.5s ease-in-out infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ff1493; /* Magenta color */
+    color: #ff1493 !important; /* Force magenta color */
+    filter: none; /* Remove any filters that might affect color */
 }
 
         .welcome-section {
@@ -643,7 +644,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             typingDiv.id = 'currentTypingIndicator';
             typingDiv.innerHTML = `
                 <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
-                <div class="thinking-heart">💖</div>
+               <div class="thinking-heart">♥</div>
             `;
             
             chatArea.appendChild(typingDiv);
