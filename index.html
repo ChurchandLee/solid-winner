@@ -8,9 +8,9 @@
     <meta name="theme-color" content="#5bd1e4">
     
     <!-- PWA and App Icon Meta Tags -->
-   <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
     <link rel="manifest" href="app-manifest.json">
     
     <!-- iOS specific -->
@@ -38,9 +38,9 @@
             padding: 20px;
             background-image: url('https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/solidwinner.png');
             background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .container {
@@ -65,8 +65,8 @@ background-attachment: fixed;
         }
 
         .logo {
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto 15px auto;
             transition: transform 0.3s ease;
             display: flex;
@@ -80,17 +80,11 @@ background-attachment: fixed;
             transform: scale(1.05);
         }
 
-        .logo-header h1 {
-            font-size: 2.2em;
-            margin-bottom: 8px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
         .logo-header p {
             opacity: 0.95;
-            font-size: 1.1em;
-            font-weight: 500;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 10px;
         }
 
         .chat-area {
@@ -186,7 +180,7 @@ background-attachment: fixed;
         }
 
         .disclaimer {
-            : background linear-gradient(135deg, #fff8dc 0%, #ffeaa7 100%);
+            background: linear-gradient(135deg, #fff8dc 0%, #ffeaa7 100%);
             border: 2px solid #f39c12;
             border-radius: 12px;
             padding: 15px;
@@ -199,7 +193,7 @@ background-attachment: fixed;
 
         .input-area {
             padding: 20px;
-            : background rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 15px;
@@ -214,7 +208,7 @@ background-attachment: fixed;
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
-            :background white;
+            background: white;
             font-family: inherit;
         }
 
@@ -225,7 +219,7 @@ background-attachment: fixed;
 
         .send-button {
             padding: 15px 25px;
-            : background linear-gradient(135deg, #218cbd 0%, #45a049 100%);
+            background: linear-gradient(135deg, #218cbd 0%, #45a049 100%);
             color: white;
             border: none;
             border-radius: 25px;
@@ -281,12 +275,8 @@ background-attachment: fixed;
             }
             
             .logo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .logo-header h1 {
-                font-size: 1.8em;
+                width: 160px;
+                height: 160px;
             }
             
             .message {
@@ -298,21 +288,21 @@ background-attachment: fixed;
 <body>
     <div class="container">
         <!-- Logo Header Section -->
-       <div class="logo-header">
-    <div class="logo">
-        <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png" alt="Hear Logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 10;">
-    </div>   
-    <p>AI Mental Health Support - Self Discovery for Positive Mental Health</p>
-</div>
+        <div class="logo-header">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png" alt="Hear Logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 10;">
+            </div>   
+            <p>AI Mental Health Support - Self Discovery for Positive Mental Health</p>
+        </div>
 
         <!-- Chat Area -->
         <div class="chat-area" id="chatArea">
             <!-- Welcome Message -->
             <div class="welcome-section">
-                <h2>Welcome to Hear </h2>
+                <h2>Welcome to Hear to Listen</h2>
                 <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                  <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(76, 175, 80, 0.3); object-fit: cover; object-position: center;">
-<p style="margin: 0;">I'm Harper and I am here to listen and support you through whatever you're experiencing. This is a safe, judgement-free space where you can share your thoughts and feelings.</p>
+                    <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(76, 175, 80, 0.3); object-fit: cover; object-position: center;">
+                    <p style="margin: 0;">I'm Harper and I am here to listen and support you through whatever you're experiencing. This is a safe, judgement-free space where you can share your thoughts and feelings.</p>
                 </div>
                 
                 <!-- Important Disclaimer -->
@@ -335,7 +325,7 @@ background-attachment: fixed;
 
     <script>
         // Enhanced Mental Health System Prompt for ChatGPT
-        const SYSTEM_PROMPT = `You are a compassionate AI mental health companion named "Harper" from Hear...`
+        const SYSTEM_PROMPT = `You are a compassionate AI mental health companion named "Harper" from Hear. Your primary role is to provide supportive, exploratory conversations that help people process their feelings and thoughts.
 
 CRITICAL: NEVER use the response "I'm really sorry that you're feeling this way, but I'm unable to provide the help that you need. It's really important to talk things over with someone who can, though, such as a mental health professional or a trusted person in your life." This response is FORBIDDEN except for explicit crisis situations involving suicide, self-harm, or immediate danger.
 
@@ -379,7 +369,7 @@ If you detect explicit mentions of suicide, self-harm, or immediate danger:
 
 CONVERSATION FLOW:
 - Ask specific questions about their situation
-- Explore the context and  of what they're experiencing
+- Explore the context and background of what they're experiencing
 - Help them identify patterns, triggers, or underlying factors
 - Encourage them to reflect on their own coping strategies and strengths
 - Offer gentle suggestions for self-care or perspective shifts when natural
@@ -408,69 +398,23 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                     "I'm really concerned about what you've shared with me about wanting to end your life. This sounds like you're in serious emotional pain right now. Your safety is the most important thing, and there are people specifically trained to help with these feelings:\n\n• US: 988 (Suicide & Crisis Lifeline) - 24/7\n• UK: 116 123 (Samaritans) - 24/7\n• Crisis Text: HOME to 741741\n\nAre you in immediate danger right now? Can you stay safe while we talk about getting you connected with crisis support?"
                 ],
 
-                // BPD - Exploratory and supportive
-                bpd: [
-                    "BPD can make emotions feel so incredibly intense - like everything is turned up to maximum volume. When you mentioned borderline, I'm curious about what you're experiencing right now that made you bring it up. Are you in the middle of an emotional storm, or is there something specific about living with BPD that's on your mind today?",
-                    "Living with BPD often means your emotional world feels completely different from how others experience things. What's been the most challenging part for you lately? Is it the intensity of feelings, relationship struggles, or maybe that sense of identity shifting? I'd love to understand more about your particular experience with it."
-                ],
-
-                // ADHD - Understanding their experience
-                adhd: [
-                    "ADHD can make daily life feel like you're operating with a different instruction manual than everyone else. What aspects of ADHD are affecting you most right now? Is it focus issues, time management, emotional regulation, or maybe that sense of being overwhelmed by tasks that seem simple to others? I'd love to understand your particular struggles with it.",
-                    "Living with ADHD often means your brain works in unique ways that the world doesn't always accommodate. What feels most frustrating about it lately? And on the flip side, have you noticed any ways that your ADHD brain actually works better than neurotypical brains in certain situations? What are your unique strengths?"
-                ],
-
                 // Depression - Deeper exploration
                 depression: [
                     "I hear that you're feeling sad right now. That takes courage to share. What's been happening in your life that's bringing up this sadness? Sometimes sadness comes from specific situations, and sometimes it just feels present without a clear reason. I'm genuinely curious about what your experience has been like.",
                     "When you say 'I am sad,' I can sense there's real pain there. What does this sadness feel like for you day-to-day? Is it more of a deep ache, or something that comes and goes in waves? I'm wondering what might be weighing on your heart right now.",
-                    "Thank you for trusting me with how you're feeling. Sadness can be such a heavy emotion to carry. What's been going on that's making you feel this way? Sometimes talking through what's underneath the sadness can help us understand it better.",
-                    "I can hear the sadness in what you're sharing, and I want you to know that what you're feeling is completely valid. What's been the hardest part about feeling sad lately? Is there something specific that happened, or is it more of a general heaviness you've been carrying?",
-                    "When you tell me you feel sad, I'm curious about what that looks like in your daily life. How long have you been feeling this way? What thoughts tend to come up when the sadness feels strongest? I'm here to listen and explore this with you.",
-                    "Depression can feel like such a heavy, persistent presence. When you think about your depression, what does it feel like in your daily life right now? I'm curious - is this a recent struggle, or something you've been dealing with for a while? What made you want to talk about it today?",
-                    "You mentioned feeling depressed, and I wonder what that looks like for you specifically. Is it more of a numbness, a heavy sadness, or that exhausting fog that makes everything feel difficult? What time of day tends to be hardest, and have you noticed anything that makes it slightly better or worse?"
+                    "Thank you for trusting me with how you're feeling. Sadness can be such a heavy emotion to carry. What's been going on that's making you feel this way? Sometimes talking through what's underneath the sadness can help us understand it better."
                 ],
 
-                // Anxiety - Understanding and exploring (includes scared, worried, afraid)
+                // Anxiety - Understanding and exploring
                 anxiety: [
                     "I can hear that you're feeling scared right now. Fear can be such an overwhelming emotion, especially when it feels big and consuming. What's frightening you most at the moment? Sometimes naming our fears can help us understand them better and figure out what might help you feel safer.",
-                    "When you say you're feeling anxious or scared, I can sense there's real distress there. What does this fear feel like in your body and mind? Are there specific thoughts or situations that are triggering these feelings, or does the anxiety seem to come from nowhere? I'm here to listen and explore this with you.",
-                    "Anxiety can show up in so many different ways. What does your anxiety typically feel like - is it more physical sensations, racing thoughts, or that constant sense of dread? I'm curious about what kinds of situations or thoughts tend to trigger it most for you. What's been on your mind that's making the anxiety feel particularly present right now?",
-                    "When you mention feeling anxious, I wonder what that experience is like for you. Does it come in waves, or is it more of a constant background hum? What thoughts tend to fuel it most? Sometimes exploring what our anxiety is trying to tell us can be helpful - what do you think yours might be worried about?",
-                    "I can sense that worry or fear is taking up a lot of space in your mind right now. That can be so exhausting. What are you finding yourself most worried about? Sometimes when we name our fears out loud, it can help us see which ones we might have some control over and which ones we don't."
+                    "When you say you're feeling anxious or scared, I can sense there's real distress there. What does this fear feel like in your body and mind? Are there specific thoughts or situations that are triggering these feelings, or does the anxiety seem to come from nowhere? I'm here to listen and explore this with you."
                 ],
 
                 // Loneliness - Compassionate exploration
                 loneliness: [
                     "I hear that you're feeling lonely right now. Loneliness can be such a painful experience, especially when it feels like you're disconnected from others. What does this loneliness look like for you? Are you physically alone, or is it more that feeling of being around people but still feeling unseen or misunderstood?",
-                    "When you say you feel lonely, I can sense there's a real ache there. What kind of connection are you most missing right now? Is it wanting close friendships, family connection, or maybe just someone who really understands what you're going through? I'm curious about what would help you feel less alone.",
-                    "Loneliness can feel so isolating, especially when it seems like everyone else is naturally connected. What does loneliness feel like for you right now? Is it missing specific people, or more about wanting someone who really understands you? I'm curious about what kind of connection you're most longing for.",
-                    "When you say you're feeling lonely, I wonder what that looks like in your daily life. Are you physically alone a lot, or is it more that feeling of being surrounded by people but still feeling unseen? What would meaningful connection look like for you - what are you hoping to find in relationships that feels missing right now?",
-                    "I can hear the loneliness in what you're sharing, and I want you to know that reaching out here shows real courage. What's been making the loneliness feel particularly strong lately? Sometimes understanding what triggered these feelings can help us think about what might provide some relief."
-                ],
-
-                // Overwhelmed - Practical exploration
-                overwhelmed: [
-                    "When everything feels like too much, it can be hard to even know where to start. What's contributing most to feeling overwhelmed right now - is it work, relationships, life changes, or just an accumulation of daily stresses? Sometimes talking through what's on your plate can help us see patterns or priorities.",
-                    "That overwhelmed feeling can be so paralyzing. What does your typical day look like right now? When you think about everything you're dealing with, what feels most urgent versus what might actually be most important? Sometimes those are different things, and sorting that out can help reduce the pressure."
-                ],
-
-                // Anger
-                anger: [
-                    "I can sense there's some real anger present for you right now. Anger can be such a powerful emotion - what's been triggering it for you lately? Sometimes anger is telling us something important about our boundaries or what matters to us. What do you think might be underneath this anger you're feeling?",
-                    "It sounds like anger is taking up space in your life right now. What does that anger feel like when it shows up - is it quick and intense, or more of a simmering frustration? I'm curious about what situations or thoughts tend to spark it most for you. What's been most frustrating lately?"
-                ],
-
-                // Motivation - Curiosity about what's underneath
-                motivation: [
-                    "Lack of motivation can be so frustrating, especially when you know what you 'should' be doing but just can't seem to make yourself do it. What's that experience like for you right now? Are there specific things you're struggling to motivate yourself for, or is it more of a general feeling? Sometimes understanding what's underneath can help.",
-                    "When motivation feels absent, it's worth exploring what might be going on underneath. Is it that the goals don't feel meaningful anymore, or are you feeling overwhelmed, or maybe burned out? What used to motivate you that doesn't seem to work anymore? Sometimes our motivation systems need recalibrating."
-                ],
-
-                // Sleep troubles
-                sleep_troubles: [
-                    "Sleep troubles can affect everything else in your life. What's your sleep situation like right now - is it trouble falling asleep, staying asleep, or waking up feeling unrefreshed? When did you first notice these sleep issues starting? Sometimes there are patterns or triggers we can identify.",
-                    "Poor sleep can create such a frustrating cycle where you're tired but wired, or exhausted but your mind won't turn off. What goes through your mind when you're lying there unable to sleep? Are there particular worries or thoughts that tend to keep you up, or is it more physical restlessness?"
+                    "When you say you feel lonely, I can sense there's a real ache there. What kind of connection are you most missing right now? Is it wanting close friendships, family connection, or maybe just someone who really understands what you're going through? I'm curious about what would help you feel less alone."
                 ],
 
                 // Greeting - Warm and curious
@@ -483,33 +427,23 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 general: [
                     "I can sense there's something weighing on you. What's been occupying your thoughts lately? Sometimes just having space to talk through what's on our minds can help us process things better. What feels most important for you to share right now?",
                     "It sounds like you're going through something. What's your inner world like at the moment? I'm genuinely curious about your experience and what's been feeling most challenging or confusing for you lately. What would feel helpful to explore together?",
-                    "I hear that you're reaching out, and I want you to know that whatever you're experiencing matters. What's been going on that made you want to talk today? What feels most present or pressing in your life right now?",
-                    "Thank you for trusting me with whatever you're carrying. What's been on your heart or mind recently? Sometimes we know exactly what we want to talk about, and sometimes we just need space to figure it out. Either way is completely fine - where would you like to start?",
-                    "I can tell there's something you want to share. What's been the most challenging part of your day, week, or even just this moment? I'm here to listen and explore whatever feels most important to you right now."
+                    "Thank you for trusting me with whatever you're carrying. What's been on your heart or mind recently? Sometimes we know exactly what we want to talk about, and sometimes we just need space to figure it out. Either way is completely fine - where would you like to start?"
                 ]
             };
 
             const lowerMessage = userMessage.toLowerCase();
             let responseCategory = 'general';
             
-            // Enhanced detection logic - Comprehensive keyword detection including "I feel" and "I am" patterns
+            // Enhanced detection logic
             if (lowerMessage.includes('suicidal') || lowerMessage.includes('kill myself') || lowerMessage.includes('want to die') || 
                 lowerMessage.includes('end my life') || lowerMessage.includes('suicide') || lowerMessage.includes('self harm') || 
                 lowerMessage.includes('hurt myself') || lowerMessage.includes('better off dead') || lowerMessage.includes('no point living')) {
                 responseCategory = 'crisis';
             }
-            else if (lowerMessage.includes('bpd') || lowerMessage.includes('borderline') || lowerMessage.includes('borderline personality')) {
-                responseCategory = 'bpd';
-            }
-            else if (lowerMessage.includes('adhd') || lowerMessage.includes('add') || lowerMessage.includes('can\'t focus') || 
-                     lowerMessage.includes('attention') || lowerMessage.includes('hyperactive') || lowerMessage.includes('distracted')) {
-                responseCategory = 'adhd';
-            }
             else if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('panic') || 
                      lowerMessage.includes('nervous') || lowerMessage.includes('i feel anxious') || lowerMessage.includes('i am anxious') ||
-                     lowerMessage.includes('feel nervous') || lowerMessage.includes('am nervous') || lowerMessage.includes('worried') ||
-                     lowerMessage.includes('i feel worried') || lowerMessage.includes('i am worried') || lowerMessage.includes('feel scared') ||
-                     lowerMessage.includes('i feel scared') || lowerMessage.includes('i am scared') || lowerMessage.includes('am scared') ||
+                     lowerMessage.includes('worried') || lowerMessage.includes('i feel worried') || lowerMessage.includes('i am worried') || 
+                     lowerMessage.includes('feel scared') || lowerMessage.includes('i feel scared') || lowerMessage.includes('i am scared') ||
                      lowerMessage.includes('afraid') || lowerMessage.includes('i feel afraid') || lowerMessage.includes('i am afraid')) {
                 responseCategory = 'anxiety';
             }
@@ -517,40 +451,14 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                      lowerMessage.includes('hopeless') || lowerMessage.includes('down') || lowerMessage.includes('low') ||
                      lowerMessage.includes('i feel sad') || lowerMessage.includes('i am sad') || lowerMessage.includes('feel sad') ||
                      lowerMessage.includes('i feel down') || lowerMessage.includes('i am down') || lowerMessage.includes('feel down') ||
-                     lowerMessage.includes('i feel depressed') || lowerMessage.includes('i am depressed') || lowerMessage.includes('feel depressed') ||
-                     lowerMessage.includes('i feel low') || lowerMessage.includes('i am low') || lowerMessage.includes('feel low') ||
-                     lowerMessage.includes('i feel hopeless') || lowerMessage.includes('i am hopeless') || lowerMessage.includes('feel hopeless')) {
+                     lowerMessage.includes('i feel depressed') || lowerMessage.includes('i am depressed') || lowerMessage.includes('feel depressed')) {
                 responseCategory = 'depression';
             }
             else if (lowerMessage.includes('lonely') || lowerMessage.includes('loneliness') || lowerMessage.includes('alone') || 
                      lowerMessage.includes('isolated') || lowerMessage.includes('i feel lonely') || lowerMessage.includes('i am lonely') ||
                      lowerMessage.includes('feel lonely') || lowerMessage.includes('i feel alone') || lowerMessage.includes('i am alone') ||
-                     lowerMessage.includes('feel alone') || lowerMessage.includes('i feel isolated') || lowerMessage.includes('i am isolated') ||
-                     lowerMessage.includes('feel isolated') || lowerMessage.includes('no friends') || lowerMessage.includes('nobody cares')) {
+                     lowerMessage.includes('feel alone') || lowerMessage.includes('no friends') || lowerMessage.includes('nobody cares')) {
                 responseCategory = 'loneliness';
-            }
-            else if (lowerMessage.includes('overwhelmed') || lowerMessage.includes('too much') || lowerMessage.includes('burnout') || 
-                     lowerMessage.includes('stressed') || lowerMessage.includes('i feel overwhelmed') || lowerMessage.includes('i am overwhelmed') ||
-                     lowerMessage.includes('feel overwhelmed') || lowerMessage.includes('i feel stressed') || lowerMessage.includes('i am stressed') ||
-                     lowerMessage.includes('feel stressed') || lowerMessage.includes('can\'t cope') || lowerMessage.includes('too much pressure')) {
-                responseCategory = 'overwhelmed';
-            }
-            else if (lowerMessage.includes('angry') || lowerMessage.includes('anger') || lowerMessage.includes('furious') || 
-                     lowerMessage.includes('rage') || lowerMessage.includes('mad') || lowerMessage.includes('i feel angry') ||
-                     lowerMessage.includes('i am angry') || lowerMessage.includes('feel angry') || lowerMessage.includes('i feel mad') ||
-                     lowerMessage.includes('i am mad') || lowerMessage.includes('feel mad') || lowerMessage.includes('frustrated') ||
-                     lowerMessage.includes('i feel frustrated') || lowerMessage.includes('i am frustrated') || lowerMessage.includes('feel frustrated')) {
-                responseCategory = 'anger';
-            }
-            else if (lowerMessage.includes('motivation') || lowerMessage.includes('need motivation') || lowerMessage.includes('unmotivated') || 
-                     lowerMessage.includes('no energy') || lowerMessage.includes('can\'t motivate') || lowerMessage.includes('no drive') ||
-                     lowerMessage.includes('feel unmotivated') || lowerMessage.includes('i feel unmotivated') || lowerMessage.includes('i am unmotivated')) {
-                responseCategory = 'motivation';
-            }
-            else if (lowerMessage.includes('sleep') || lowerMessage.includes('insomnia') || lowerMessage.includes('can\'t sleep') || 
-                     lowerMessage.includes('sleep troubles') || lowerMessage.includes('tired') || lowerMessage.includes('exhausted') ||
-                     lowerMessage.includes('can\'t fall asleep') || lowerMessage.includes('wake up tired') || lowerMessage.includes('no sleep')) {
-                responseCategory = 'sleep_troubles';
             }
             else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey') ||
                      lowerMessage.includes('good morning') || lowerMessage.includes('good evening') || lowerMessage.includes('good afternoon')) {
@@ -611,12 +519,10 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 
                 const apiResponse = data.choices[0].message.content.trim();
                 
-                // Check if API gave generic unhelpful response - if so, use our intelligent system instead
+                // Check if API gave generic unhelpful response
                 if (apiResponse.includes("I'm really sorry that you're feeling this way, but I'm unable to provide the help that you need") ||
                     apiResponse.includes("It's really important to talk things over with someone who can") ||
-                    apiResponse.includes("mental health professional or a trusted person in your life") ||
-                    apiResponse.includes("I'm not able to provide") ||
-                    apiResponse.includes("I can't provide the support you need")) {
+                    apiResponse.includes("mental health professional or a trusted person in your life")) {
                     
                     // Use our intelligent response system instead
                     const lastUserMessage = messages[messages.length - 1].content;
@@ -705,7 +611,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             if (sender === 'ai') {
                 // Create AI message with avatar
                 messageDiv.innerHTML = `
-                 <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
+                    <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
                     <div class="ai-message-content">${content}</div>
                 `;
             } else {
@@ -735,7 +641,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             typingDiv.className = 'message ai-message';
             typingDiv.id = 'currentTypingIndicator';
             typingDiv.innerHTML = `
-             <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
+                <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
                 <div class="thinking-heart">💚</div>
             `;
             
