@@ -308,8 +308,8 @@
             <div class="welcome-section">
                 <h2>Welcome to Hear to Listen</h2>
                 <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                    <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Eden.png" alt="Eden Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(76, 175, 80, 0.3); object-fit: cover; object-position: center;">
-                    <p style="margin: 0;">I'm Eden and I am here to listen and support you through whatever you're experiencing. This is a safe, judgement-free space where you can share your thoughts and feelings.</p>
+                    <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Harper.png" alt="Harper Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(76, 175, 80, 0.3); object-fit: cover; object-position: center;">
+                    <p style="margin: 0;">I'm Harper and I am here to listen and support you through whatever you're experiencing. This is a safe, judgement-free space where you can share your thoughts and feelings.</p>
                 </div>
                 
                 <!-- Important Disclaimer -->
@@ -332,7 +332,7 @@
 
     <script>
         // Enhanced Mental Health System Prompt for ChatGPT
-        const SYSTEM_PROMPT = `You are a compassionate AI mental health companion named "Eden" from HeartoListen. Your primary role is to provide supportive, exploratory conversations that help people process their feelings and thoughts.
+        const SYSTEM_PROMPT = `You are a compassionate AI mental health companion named "Harper" from HeartoListen. Your primary role is to provide supportive, exploratory conversations that help people process their feelings and thoughts.
 
 CRITICAL: NEVER use the response "I'm really sorry that you're feeling this way, but I'm unable to provide the help that you need. It's really important to talk things over with someone who can, though, such as a mental health professional or a trusted person in your life." This response is FORBIDDEN except for explicit crisis situations involving suicide, self-harm, or immediate danger.
 
@@ -702,7 +702,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             if (sender === 'ai') {
                 // Create AI message with avatar
                 messageDiv.innerHTML = `
-                    <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Eden.png" alt="Eden Avatar" class="ai-avatar">
+                    <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
                     <div class="ai-message-content">${content}</div>
                 `;
             } else {
@@ -732,7 +732,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             typingDiv.className = 'message ai-message';
             typingDiv.id = 'currentTypingIndicator';
             typingDiv.innerHTML = `
-                <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Eden.png" alt="Eden Avatar" class="ai-avatar">
+                <img src="https://raw.githubusercontent.com/ChurchandLee/ubiquitous-guacamole/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
                 <div class="thinking-heart">💚</div>
             `;
             
