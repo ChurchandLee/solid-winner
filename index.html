@@ -1,331 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hear - AI Mental Health Support</title>
-    <meta name="description" content="Free AI-powered mental health support chat. A safe, judgement-free space for mental wellness.">
-    <meta name="theme-color" content="#5bd1e4">
-    
-    <!-- PWA and App Icon Meta Tags -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png">
-    <link rel="manifest" href="app-manifest.json">
-    
-    <!-- iOS specific -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Hear">
-    
-    <!-- Android specific -->
-    <meta name="mobile-web-app-capable" content="yes">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #5bd1e4 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-image: url('https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/solidwinner.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 700px;
-        }
-
-        .logo-header {
-            background: linear-gradient(135deg, #5f795a 0%, #218cbd 100%);
-            padding: 25px;
-            text-align: center;
-            color: white;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .logo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 15px auto;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-header p {
-            opacity: 0.95;
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        .chat-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-        }
-
-        .message {
-            max-width: 85%;
-            padding: 15px 20px;
-            border-radius: 18px;
-            animation: fadeIn 0.3s ease-out;
-            line-height: 1.6;
-            font-size: 15px;
-            white-space: pre-wrap;
-        }
-
-        .ai-message {
-            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8ff 100%);
-            color: #274e13;
-            align-self: flex-start;
-            border-left: 4px solid #218cbd;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 15px 20px;
-        }
-
-        .ai-message-content {
-            flex: 1;
-            line-height: 1.6;
-        }
-
-        .ai-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid rgba(76, 175, 80, 0.3);
-            object-fit: cover;
-            object-position: center;
-            flex-shrink: 0;
-        }
-
-        .user-message {
-            background: linear-gradient(135deg, #5bd1e4 0%, #45a049 100%);
-            color: white;
-            align-self: flex-end;
-            box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
-        }
-
-        .error-message {
-            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
-            color: #c62828;
-            align-self: flex-start;
-            border-left: 4px solid #f44336;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-   .thinking-heart {
-    font-size: 24px;
-    animation: heartPulse 1.5s ease-in-out infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ff1493 !important; /* Force magenta color */
-    filter: none; /* Remove any filters that might affect color */
-}
-
-        .welcome-section {
-            text-align: center;
-            margin: 20px 0;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, rgba(139, 195, 74, 0.08) 100%);
-            border-radius: 15px;
-            border: 2px dashed rgba(76, 175, 80, 0.2);
-        }
-
-        .welcome-section h2 {
-            color: #5bd1e4;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .welcome-section p {
-            color: #5a6c57;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .disclaimer {
-            background: linear-gradient(135deg, #fff8dc 0%, #ffeaa7 100%);
-            border: 2px solid #f39c12;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 13px;
-            color: #8b4513;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .input-area {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .input-field {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-            background: white;
-            font-family: inherit;
-        }
-
-        .input-field:focus {
-            border-color: #218cbd;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-        }
-
-        .send-button {
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #218cbd 0%, #45a049 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            min-width: 80px;
-        }
-
-        .send-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
-        }
-
-        .send-button:active {
-            transform: translateY(0);
-        }
-
-        .send-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heartPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1.3);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive design */
-        @media (max-width: 600px) {
-            .container {
-                height: 90vh;
-                margin: 10px;
-            }
-            
-            .logo {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .message {
-                max-width: 95%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Logo Header Section -->
-        <div class="logo-header">
-            <div class="logo">
-                <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEAR.png" alt="Hear Logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 10;">
-            </div>   
-            <p>AI Mental Health Support - Self Discovery for Positive Mental Health</p>
-        </div>
-
-        <!-- Chat Area -->
-        <div class="chat-area" id="chatArea">
-            <!-- Welcome Message -->
-            <div class="welcome-section">
-                <h2>Welcome to Hear to Listen</h2>
-                <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                    <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(76, 175, 80, 0.3); object-fit: cover; object-position: center;">
-                    <p style="margin: 0;">I'm Harper and I am here to listen and support you through whatever you're experiencing. This is a safe, judgement-free space where you can share your thoughts and feelings.</p>
-                </div>
-                
-                <!-- Important Disclaimer -->
-                <div class="disclaimer">
-                    <strong>Important:</strong> This is an AI tool for support and guidance. In case of CRISIS or EMERGENCY, please contact professional help IMMEDIATELY. UK: 999 USA: 911 (or your national Emergency phone number)
-                </div>
-            </div>
-        </div>
-
-        <!-- Input Area -->
-        <div class="input-area">
-            <input type="text" 
-                   id="messageInput" 
-                   class="input-field" 
-                   placeholder="Share what's on your mind..." 
-                   onkeypress="handleKeyPress(event)">
-            <button id="sendButton" class="send-button" onclick="sendMessage()">Send</button>
-        </div>
-    </div>
-
-    <script>
+<script>
         // Enhanced Mental Health System Prompt for ChatGPT
         const SYSTEM_PROMPT = `You are a compassionate AI mental health companion named "Harper" from Hear. Your primary role is to provide supportive, exploratory conversations that help people process their feelings and thoughts.
 
@@ -389,7 +62,9 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
         let usedResponses = {
             crisis: [], depression: [], anxiety: [], loneliness: [], 
             overwhelmed: [], anger: [], motivation: [], sleep_troubles: [], 
-            greeting: [], general: [], bpd: [], adhd: []
+            greeting: [], general: [], bpd: [], adhd: [], self_esteem: [],
+            body_image: [], relationships: [], family: [], peer_pressure: [],
+            online_safety: [], eating: [], substances: [], friendships: []
         };
 
         // Comprehensive Mental Health Response System
@@ -398,6 +73,69 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 // CRISIS/SUICIDAL IDEATION - ONLY for explicit crisis situations
                 crisis: [
                     "I'm really concerned about what you've shared with me about wanting to end your life. This sounds like you're in serious emotional pain right now. Your safety is the most important thing, and there are people specifically trained to help with these feelings:\n\n• US: 988 (Suicide & Crisis Lifeline) - 24/7\n• UK: 116 123 (Samaritans) - 24/7\n• Crisis Text: HOME to 741741\n\nAre you in immediate danger right now? Can you stay safe while we talk about getting you connected with crisis support?"
+                ],
+
+                // Self-esteem and self-image
+                self_esteem: [
+                    "It sounds like you're really struggling with how you see yourself right now. That can feel so heavy and consuming. What's been going through your mind about yourself lately? Sometimes our inner critic can be incredibly harsh - what kinds of things is yours telling you?",
+                    "When you think about your self-worth, what influences those feelings the most? Is it comparisons to others, past experiences, or maybe things people have said? I'm curious about what's making it harder for you to see your own value right now.",
+                    "Self-esteem can be such a rollercoaster, especially during these years when everything feels so intense. What does a 'good day' look like for you in terms of how you feel about yourself? And what tends to make the harder days feel worse?"
+                ],
+
+                // Body image and appearance concerns
+                body_image: [
+                    "Body image struggles can be so painful and all-consuming. What's been going through your mind about your appearance lately? Sometimes these thoughts can feel like they're on repeat - what patterns have you noticed in how you think about your body?",
+                    "When you look in the mirror or think about how you look, what emotions come up for you? Is it disappointment, anxiety, frustration, or something else? I'm curious about what specifically feels most challenging about your relationship with your body right now.",
+                    "It sounds like how you see yourself is causing you real distress. What do you think has influenced these feelings about your appearance? Social media, comments from others, comparing yourself to friends or celebrities? What feels like the biggest trigger for these thoughts?"
+                ],
+
+                // Relationships and dating
+                relationships: [
+                    "Relationships can be so confusing and intense, especially when you're figuring out what you want and need. What's been on your mind about relationships lately? Whether it's someone specific or just the whole idea of dating, I'm here to listen.",
+                    "When you think about relationships - whether romantic, sexual, or just connecting with someone you're interested in - what feels most confusing or overwhelming? What questions or concerns are coming up for you?",
+                    "It sounds like you're navigating some relationship territory that feels complicated. What's been the most challenging part for you? Is it communication, boundaries, physical intimacy, or something else entirely?"
+                ],
+
+                // Family problems
+                family: [
+                    "Family dynamics can be so complicated and emotionally draining. What's been happening at home that's weighing on you? Sometimes family stress can feel inescapable because you're living in it every day.",
+                    "It sounds like things with your family are really difficult right now. What's the hardest part about what you're dealing with? Is it conflict, lack of understanding, control issues, or feeling like you can't be yourself at home?",
+                    "When you think about your family situation, what emotions come up most strongly? Anger, sadness, frustration, disappointment? Family relationships can be so complex because there's often love mixed in with all the difficult feelings."
+                ],
+
+                // Peer pressure and social dynamics
+                peer_pressure: [
+                    "Peer pressure can feel so intense because it touches on our deepest need to belong and be accepted. What kind of pressure are you feeling from friends or classmates? Sometimes it's obvious, but sometimes it's more subtle.",
+                    "It sounds like you're dealing with some pressure from others to do things that don't feel right for you. What's that internal conflict like? When you imagine saying no or doing something different, what thoughts or fears come up?",
+                    "Social dynamics can be exhausting when you feel caught between wanting to fit in and staying true to yourself. What feels most challenging about the pressure you're experiencing? Is it about activities, appearance, behavior, or something else?"
+                ],
+
+                // Friendships
+                friendships: [
+                    "Friendships during these years can be so intense and complicated. What's been going on with your friends that's bothering you? Sometimes friendship drama can feel like the most important thing in the world because these relationships mean so much.",
+                    "It sounds like there's some friendship stuff weighing on you. What's been the hardest part? Is it feeling left out, conflicts, changing dynamics, or maybe outgrowing certain friendships? These relationships can shift so much during teenage years.",
+                    "When you think about your friendships right now, what feels most confusing or painful? Sometimes friends can be our greatest support and our biggest source of stress at the same time."
+                ],
+
+                // Online safety and digital concerns
+                online_safety: [
+                    "Online spaces can be so tricky to navigate, especially when it comes to sharing personal things or dealing with pressure. What's been concerning you about your online experiences? Whether it's social media, messaging, or other apps, I'm here to listen without judgment.",
+                    "It sounds like something online is worrying you or making you uncomfortable. What's been happening that's on your mind? Sometimes the digital world can feel overwhelming or unsafe in ways that are hard to explain to adults.",
+                    "When you think about your online interactions or digital footprint, what feels most stressful or confusing? Is it about privacy, pressure to share certain things, unwanted contact from others, or something else?"
+                ],
+
+                // Eating and body relationship
+                eating: [
+                    "Your relationship with food and eating can be so complex, especially when there's emotional stuff mixed in. What's been going on with eating that's concerning you? Sometimes food becomes tied up with control, emotions, or how we feel about our bodies.",
+                    "It sounds like eating or food is causing you some distress. What does that look like for you day-to-day? Are you finding yourself thinking about food a lot, having rules around eating, or using food to cope with emotions?",
+                    "When you think about eating and your body, what emotions come up? Sometimes eating behaviors can be a way of dealing with other feelings or situations. What do you think might be underneath what you're experiencing with food?"
+                ],
+
+                // Substances (alcohol, drugs, vaping)
+                substances: [
+                    "It takes courage to bring up concerns about drinking, drugs, or vaping. What's been on your mind about substance use? Whether it's your own use, pressure from others, or worries about friends, I'm here to listen without judgment.",
+                    "When you think about alcohol, drugs, or vaping, what feelings or concerns come up for you? Are you dealing with pressure to try things, worried about how much you or someone else is using, or curious about risks and effects?",
+                    "It sounds like substance use is something that's weighing on you. What specifically has you concerned or confused? Sometimes there can be a lot of conflicting messages about these things, and it can be hard to figure out what's right for you."
                 ],
 
                 // Depression - Deeper exploration
@@ -436,12 +174,75 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             const lowerMessage = userMessage.toLowerCase();
             let responseCategory = 'general';
             
-            // Enhanced detection logic
+            // Enhanced detection logic including teenage issues
             if (lowerMessage.includes('suicidal') || lowerMessage.includes('kill myself') || lowerMessage.includes('want to die') || 
                 lowerMessage.includes('end my life') || lowerMessage.includes('suicide') || lowerMessage.includes('self harm') || 
                 lowerMessage.includes('hurt myself') || lowerMessage.includes('better off dead') || lowerMessage.includes('no point living')) {
                 responseCategory = 'crisis';
             }
+            // Self-esteem and self-worth
+            else if (lowerMessage.includes('self esteem') || lowerMessage.includes('self-esteem') || lowerMessage.includes('hate myself') || 
+                     lowerMessage.includes('worthless') || lowerMessage.includes('not good enough') || lowerMessage.includes('feel ugly') ||
+                     lowerMessage.includes('i\'m ugly') || lowerMessage.includes('i am ugly') || lowerMessage.includes('confidence') ||
+                     lowerMessage.includes('insecure') || lowerMessage.includes('self worth') || lowerMessage.includes('self-worth')) {
+                responseCategory = 'self_esteem';
+            }
+            // Body image and appearance
+            else if (lowerMessage.includes('body image') || lowerMessage.includes('hate my body') || lowerMessage.includes('too fat') ||
+                     lowerMessage.includes('too skinny') || lowerMessage.includes('too thin') || lowerMessage.includes('weight') ||
+                     lowerMessage.includes('appearance') || lowerMessage.includes('look bad') || lowerMessage.includes('mirror') ||
+                     lowerMessage.includes('body dysmorphia') || lowerMessage.includes('how i look')) {
+                responseCategory = 'body_image';
+            }
+            // Relationships, dating, sex, sexting
+            else if (lowerMessage.includes('relationship') || lowerMessage.includes('dating') || lowerMessage.includes('boyfriend') ||
+                     lowerMessage.includes('girlfriend') || lowerMessage.includes('crush') || lowerMessage.includes('sexting') ||
+                     lowerMessage.includes('sex') || lowerMessage.includes('sexual') || lowerMessage.includes('intimate') ||
+                     lowerMessage.includes('hooking up') || lowerMessage.includes('physical') || lowerMessage.includes('kissing')) {
+                responseCategory = 'relationships';
+            }
+            // Family problems
+            else if (lowerMessage.includes('family') || lowerMessage.includes('parents') || lowerMessage.includes('mom') ||
+                     lowerMessage.includes('dad') || lowerMessage.includes('mother') || lowerMessage.includes('father') ||
+                     lowerMessage.includes('siblings') || lowerMessage.includes('brother') || lowerMessage.includes('sister') ||
+                     lowerMessage.includes('family problems') || lowerMessage.includes('home life') || lowerMessage.includes('arguing with')) {
+                responseCategory = 'family';
+            }
+            // Peer pressure
+            else if (lowerMessage.includes('peer pressure') || lowerMessage.includes('pressure from friends') || lowerMessage.includes('fit in') ||
+                     lowerMessage.includes('friends want me to') || lowerMessage.includes('everyone else is') || lowerMessage.includes('don\'t want to but') ||
+                     lowerMessage.includes('feel pressured') || lowerMessage.includes('have to do') || lowerMessage.includes('popular kids')) {
+                responseCategory = 'peer_pressure';
+            }
+            // Friendships
+            else if (lowerMessage.includes('friends') || lowerMessage.includes('friendship') || lowerMessage.includes('best friend') ||
+                     lowerMessage.includes('friend drama') || lowerMessage.includes('falling out') || lowerMessage.includes('left out') ||
+                     lowerMessage.includes('friend group') || lowerMessage.includes('social circle') || lowerMessage.includes('bullying') ||
+                     lowerMessage.includes('mean girls') || lowerMessage.includes('gossip')) {
+                responseCategory = 'friendships';
+            }
+            // Online safety, social media
+            else if (lowerMessage.includes('online') || lowerMessage.includes('social media') || lowerMessage.includes('instagram') ||
+                     lowerMessage.includes('snapchat') || lowerMessage.includes('tiktok') || lowerMessage.includes('messaging') ||
+                     lowerMessage.includes('stranger online') || lowerMessage.includes('inappropriate messages') || lowerMessage.includes('cyberbullying') ||
+                     lowerMessage.includes('online safety') || lowerMessage.includes('sharing photos') || lowerMessage.includes('privacy')) {
+                responseCategory = 'online_safety';
+            }
+            // Eating disorders and food issues
+            else if (lowerMessage.includes('eating disorder') || lowerMessage.includes('anorexia') || lowerMessage.includes('bulimia') ||
+                     lowerMessage.includes('binge eating') || lowerMessage.includes('not eating') || lowerMessage.includes('starving myself') ||
+                     lowerMessage.includes('purging') || lowerMessage.includes('throwing up') || lowerMessage.includes('food anxiety') ||
+                     lowerMessage.includes('calories') || lowerMessage.includes('diet') || lowerMessage.includes('restrict')) {
+                responseCategory = 'eating';
+            }
+            // Substances - alcohol, drugs, vaping
+            else if (lowerMessage.includes('drinking') || lowerMessage.includes('alcohol') || lowerMessage.includes('drunk') ||
+                     lowerMessage.includes('drugs') || lowerMessage.includes('weed') || lowerMessage.includes('marijuana') ||
+                     lowerMessage.includes('vaping') || lowerMessage.includes('smoking') || lowerMessage.includes('party') ||
+                     lowerMessage.includes('high') || lowerMessage.includes('substance') || lowerMessage.includes('addiction')) {
+                responseCategory = 'substances';
+            }
+            // Existing categories
             else if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('panic') || 
                      lowerMessage.includes('nervous') || lowerMessage.includes('i feel anxious') || lowerMessage.includes('i am anxious') ||
                      lowerMessage.includes('worried') || lowerMessage.includes('i feel worried') || lowerMessage.includes('i am worried') || 
@@ -644,7 +445,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             typingDiv.id = 'currentTypingIndicator';
             typingDiv.innerHTML = `
                 <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
-               <div class="thinking-heart">♥</div>
+                <div class="thinking-heart">♥</div>
             `;
             
             chatArea.appendChild(typingDiv);
@@ -670,5 +471,3 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             document.getElementById('messageInput').focus();
         });
     </script>
-</body>
-</html>
