@@ -1,0 +1,8 @@
+icons/
+├── icon-72x72.png     (image file)
+├── icon-96x96.png     (image file) 
+├── icon-128x128.png   (image file)
+├── icon-144x144.png   (image file)
+├── icon-152x152.png   (image file)
+├── icon-384x384.png   (image file)
+└── icon-512x512.png   (image file)
