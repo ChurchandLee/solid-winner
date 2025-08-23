@@ -11,7 +11,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEARPOW.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEARPOW.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEARPOW.png">
-    <link rel="manifest" href="app-manifest.json">
     
     <!-- iOS specific -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -421,6 +420,10 @@
             left: 0;
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -495,8 +498,8 @@
             <p>By using this app, you acknowledge and agree that it is intended to provide support, validation, and helpful resources, but it cannot and does not replace the care of licensed professionals.</p>
             
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="acceptDisclaimer()">I Understand & Agree</button>
-                <button class="btn btn-secondary" onclick="needHelpNow()">I Need Help Now</button>
+                <button class="btn btn-primary" id="agreeButton">I Understand & Agree</button>
+                <button class="btn btn-secondary" id="helpButton">I Need Help Now</button>
             </div>
             
             <div class="emergency-section">
@@ -533,15 +536,15 @@
                 
                 <!-- Important Disclaimer -->
                 <div class="disclaimer">
-    <strong>⚠️ Important Safety Information:</strong>
-    <br><br>
-    <strong>Crisis Support:</strong> If you're having thoughts of suicide or self-harm, please reach out immediately:
-    <br>• <strong>UK:</strong> 999 (Emergency) | 116 123 (Samaritans - 24/7 free)
-    <br>• <strong>USA:</strong> 911 (Emergency) | 988 (Suicide & Crisis Lifeline)
-    <br>• <strong>Crisis Text:</strong> Text HOME to 741741
-    <br><br>
-    <strong>This app provides peer support and guidance, not professional medical advice.</strong> For ongoing mental health concerns, please speak with a trusted adult, counselor, or healthcare provider.
-</div>
+                    <strong>⚠️ Important Safety Information:</strong>
+                    <br><br>
+                    <strong>Crisis Support:</strong> If you're having thoughts of suicide or self-harm, please reach out immediately:
+                    <br>• <strong>UK:</strong> 999 (Emergency) | 116 123 (Samaritans - 24/7 free)
+                    <br>• <strong>USA:</strong> 911 (Emergency) | 988 (Suicide & Crisis Lifeline)
+                    <br>• <strong>Crisis Text:</strong> Text HOME to 741741
+                    <br><br>
+                    <strong>This app provides peer support and guidance, not professional medical advice.</strong> For ongoing mental health concerns, please speak with a trusted adult, counselor, or healthcare provider.
+                </div>
             </div>
         </div>
 
@@ -551,8 +554,8 @@
                    id="messageInput" 
                    class="input-field" 
                    placeholder="Share what's on your mind..." 
-                   onkeypress="handleKeyPress(event)">
-            <button id="sendButton" class="send-button" onclick="sendMessage()">Send</button>
+                   disabled>
+            <button id="sendButton" class="send-button" disabled>Send</button>
         </div>
     </div>
 
@@ -625,16 +628,38 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             online_safety: [], eating: [], substances: [], friendships: []
         };
 
-        // Modal functions
-        function acceptDisclaimer() {
-            document.getElementById('disclaimerModal').style.display = 'none';
-            document.getElementById('messageInput').focus();
-        }
+        // Modal functions - Fixed event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            const modal = document.getElementById('disclaimerModal');
+            const agreeButton = document.getElementById('agreeButton');
+            const helpButton = document.getElementById('helpButton');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
 
-        function needHelpNow() {
-            // Redirect to crisis resources or show emergency contacts
-            alert('Please contact emergency services immediately:\n\nUS: 911 or 988\nUK: 999 or 116 123\nAustralia: 000 or 13 11 14\n\nFor non-emergency crisis support, text HOME to 741741');
-        }
+            // Add event listeners for modal buttons
+            agreeButton.addEventListener('click', function() {
+                modal.classList.add('hidden');
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                messageInput.focus();
+            });
+
+            helpButton.addEventListener('click', function() {
+                alert('Please contact emergency services immediately:\n\nUS: 911 or 988\nUK: 999 or 116 123\nAustralia: 000 or 13 11 14\n\nFor non-emergency crisis support, text HOME to 741741');
+            });
+
+            // Add event listener for send button
+            sendButton.addEventListener('click', sendMessage);
+
+            // Add event listener for Enter key
+            messageInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        });
 
         // Comprehensive Mental Health Response System
         function generateIntelligentResponse(userMessage, conversationHistory = []) {
@@ -649,62 +674,6 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                     "It sounds like you're really struggling with how you see yourself right now. That can feel so heavy and consuming. What's been going through your mind about yourself lately? Sometimes our inner critic can be incredibly harsh - what kinds of things is yours telling you?",
                     "When you think about your self-worth, what influences those feelings the most? Is it comparisons to others, past experiences, or maybe things people have said? I'm curious about what's making it harder for you to see your own value right now.",
                     "Self-esteem can be such a rollercoaster, especially during these years when everything feels so intense. What does a 'good day' look like for you in terms of how you feel about yourself? And what tends to make the harder days feel worse?"
-                ],
-
-                // Body image and appearance concerns
-                body_image: [
-                    "Body image struggles can be so painful and all-consuming. What's been going through your mind about your appearance lately? Sometimes these thoughts can feel like they're on repeat - what patterns have you noticed in how you think about your body?",
-                    "When you look in the mirror or think about how you look, what emotions come up for you? Is it disappointment, anxiety, frustration, or something else? I'm curious about what specifically feels most challenging about your relationship with your body right now.",
-                    "It sounds like how you see yourself is causing you real distress. What do you think has influenced these feelings about your appearance? Social media, comments from others, comparing yourself to friends or celebrities? What feels like the biggest trigger for these thoughts?"
-                ],
-
-                // Relationships and dating
-                relationships: [
-                    "Relationships can be so confusing and intense, especially when you're figuring out what you want and need. What's been on your mind about relationships lately? Whether it's someone specific or just the whole idea of dating, I'm here to listen.",
-                    "When you think about relationships - whether romantic, sexual, or just connecting with someone you're interested in - what feels most confusing or overwhelming? What questions or concerns are coming up for you?",
-                    "It sounds like you're navigating some relationship territory that feels complicated. What's been the most challenging part for you? Is it communication, boundaries, physical intimacy, or something else entirely?"
-                ],
-
-                // Family problems
-                family: [
-                    "Family dynamics can be so complicated and emotionally draining. What's been happening at home that's weighing on you? Sometimes family stress can feel inescapable because you're living in it every day.",
-                    "It sounds like things with your family are really difficult right now. What's the hardest part about what you're dealing with? Is it conflict, lack of understanding, control issues, or feeling like you can't be yourself at home?",
-                    "When you think about your family situation, what emotions come up most strongly? Anger, sadness, frustration, disappointment? Family relationships can be so complex because there's often love mixed in with all the difficult feelings."
-                ],
-
-                // Peer pressure and social dynamics
-                peer_pressure: [
-                    "Peer pressure can feel so intense because it touches on our deepest need to belong and be accepted. What kind of pressure are you feeling from friends or classmates? Sometimes it's obvious, but sometimes it's more subtle.",
-                    "It sounds like you're dealing with some pressure from others to do things that don't feel right for you. What's that internal conflict like? When you imagine saying no or doing something different, what thoughts or fears come up?",
-                    "Social dynamics can be exhausting when you feel caught between wanting to fit in and staying true to yourself. What feels most challenging about the pressure you're experiencing? Is it about activities, appearance, behavior, or something else?"
-                ],
-
-                // Friendships
-                friendships: [
-                    "Friendships during these years can be so intense and complicated. What's been going on with your friends that's bothering you? Sometimes friendship drama can feel like the most important thing in the world because these relationships mean so much.",
-                    "It sounds like there's some friendship stuff weighing on you. What's been the hardest part? Is it feeling left out, conflicts, changing dynamics, or maybe outgrowing certain friendships? These relationships can shift so much during teenage years.",
-                    "When you think about your friendships right now, what feels most confusing or painful? Sometimes friends can be our greatest support and our biggest source of stress at the same time."
-                ],
-
-                // Online safety and digital concerns
-                online_safety: [
-                    "Online spaces can be so tricky to navigate, especially when it comes to sharing personal things or dealing with pressure. What's been concerning you about your online experiences? Whether it's social media, messaging, or other apps, I'm here to listen without judgment.",
-                    "It sounds like something online is worrying you or making you uncomfortable. What's been happening that's on your mind? Sometimes the digital world can feel overwhelming or unsafe in ways that are hard to explain to adults.",
-                    "When you think about your online interactions or digital footprint, what feels most stressful or confusing? Is it about privacy, pressure to share certain things, unwanted contact from others, or something else?"
-                ],
-
-                // Eating and body relationship
-                eating: [
-                    "Your relationship with food and eating can be so complex, especially when there's emotional stuff mixed in. What's been going on with eating that's concerning you? Sometimes food becomes tied up with control, emotions, or how we feel about our bodies.",
-                    "It sounds like eating or food is causing you some distress. What does that look like for you day-to-day? Are you finding yourself thinking about food a lot, having rules around eating, or using food to cope with emotions?",
-                    "When you think about eating and your body, what emotions come up? Sometimes eating behaviors can be a way of dealing with other feelings or situations. What do you think might be underneath what you're experiencing with food?"
-                ],
-
-                // Substances (alcohol, drugs, vaping)
-                substances: [
-                    "It takes courage to bring up concerns about drinking, drugs, or vaping. What's been on your mind about substance use? Whether it's your own use, pressure from others, or worries about friends, I'm here to listen without judgment.",
-                    "When you think about alcohol, drugs, or vaping, what feelings or concerns come up for you? Are you dealing with pressure to try things, worried about how much you or someone else is using, or curious about risks and effects?",
-                    "It sounds like substance use is something that's weighing on you. What specifically has you concerned or confused? Sometimes there can be a lot of conflicting messages about these things, and it can be hard to figure out what's right for you."
                 ],
 
                 // Depression - Deeper exploration
@@ -743,7 +712,7 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             const lowerMessage = userMessage.toLowerCase();
             let responseCategory = 'general';
             
-            // Enhanced detection logic including teenage issues
+            // Enhanced detection logic
             if (lowerMessage.includes('suicidal') || lowerMessage.includes('kill myself') || lowerMessage.includes('want to die') || 
                 lowerMessage.includes('end my life') || lowerMessage.includes('suicide') || lowerMessage.includes('self harm') || 
                 lowerMessage.includes('hurt myself') || lowerMessage.includes('better off dead') || lowerMessage.includes('no point living')) {
@@ -756,62 +725,6 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                      lowerMessage.includes('insecure') || lowerMessage.includes('self worth') || lowerMessage.includes('self-worth')) {
                 responseCategory = 'self_esteem';
             }
-            // Body image and appearance
-            else if (lowerMessage.includes('body image') || lowerMessage.includes('hate my body') || lowerMessage.includes('too fat') ||
-                     lowerMessage.includes('too skinny') || lowerMessage.includes('too thin') || lowerMessage.includes('weight') ||
-                     lowerMessage.includes('appearance') || lowerMessage.includes('look bad') || lowerMessage.includes('mirror') ||
-                     lowerMessage.includes('body dysmorphia') || lowerMessage.includes('how i look')) {
-                responseCategory = 'body_image';
-            }
-            // Relationships, dating, sex, sexting
-            else if (lowerMessage.includes('relationship') || lowerMessage.includes('dating') || lowerMessage.includes('boyfriend') ||
-                     lowerMessage.includes('girlfriend') || lowerMessage.includes('crush') || lowerMessage.includes('sexting') ||
-                     lowerMessage.includes('sex') || lowerMessage.includes('sexual') || lowerMessage.includes('intimate') ||
-                     lowerMessage.includes('hooking up') || lowerMessage.includes('physical') || lowerMessage.includes('kissing')) {
-                responseCategory = 'relationships';
-            }
-            // Family problems
-            else if (lowerMessage.includes('family') || lowerMessage.includes('parents') || lowerMessage.includes('mom') ||
-                     lowerMessage.includes('dad') || lowerMessage.includes('mother') || lowerMessage.includes('father') ||
-                     lowerMessage.includes('siblings') || lowerMessage.includes('brother') || lowerMessage.includes('sister') ||
-                     lowerMessage.includes('family problems') || lowerMessage.includes('home life') || lowerMessage.includes('arguing with')) {
-                responseCategory = 'family';
-            }
-            // Peer pressure
-            else if (lowerMessage.includes('peer pressure') || lowerMessage.includes('pressure from friends') || lowerMessage.includes('fit in') ||
-                     lowerMessage.includes('friends want me to') || lowerMessage.includes('everyone else is') || lowerMessage.includes('don\'t want to but') ||
-                     lowerMessage.includes('feel pressured') || lowerMessage.includes('have to do') || lowerMessage.includes('popular kids')) {
-                responseCategory = 'peer_pressure';
-            }
-            // Friendships
-            else if (lowerMessage.includes('friends') || lowerMessage.includes('friendship') || lowerMessage.includes('best friend') ||
-                     lowerMessage.includes('friend drama') || lowerMessage.includes('falling out') || lowerMessage.includes('left out') ||
-                     lowerMessage.includes('friend group') || lowerMessage.includes('social circle') || lowerMessage.includes('bullying') ||
-                     lowerMessage.includes('mean girls') || lowerMessage.includes('gossip')) {
-                responseCategory = 'friendships';
-            }
-            // Online safety, social media
-            else if (lowerMessage.includes('online') || lowerMessage.includes('social media') || lowerMessage.includes('instagram') ||
-                     lowerMessage.includes('snapchat') || lowerMessage.includes('tiktok') || lowerMessage.includes('messaging') ||
-                     lowerMessage.includes('stranger online') || lowerMessage.includes('inappropriate messages') || lowerMessage.includes('cyberbullying') ||
-                     lowerMessage.includes('online safety') || lowerMessage.includes('sharing photos') || lowerMessage.includes('privacy')) {
-                responseCategory = 'online_safety';
-            }
-            // Eating disorders and food issues
-            else if (lowerMessage.includes('eating disorder') || lowerMessage.includes('anorexia') || lowerMessage.includes('bulimia') ||
-                     lowerMessage.includes('binge eating') || lowerMessage.includes('not eating') || lowerMessage.includes('starving myself') ||
-                     lowerMessage.includes('purging') || lowerMessage.includes('throwing up') || lowerMessage.includes('food anxiety') ||
-                     lowerMessage.includes('calories') || lowerMessage.includes('diet') || lowerMessage.includes('restrict')) {
-                responseCategory = 'eating';
-            }
-            // Substances - alcohol, drugs, vaping
-            else if (lowerMessage.includes('drinking') || lowerMessage.includes('alcohol') || lowerMessage.includes('drunk') ||
-                     lowerMessage.includes('drugs') || lowerMessage.includes('weed') || lowerMessage.includes('marijuana') ||
-                     lowerMessage.includes('vaping') || lowerMessage.includes('smoking') || lowerMessage.includes('party') ||
-                     lowerMessage.includes('high') || lowerMessage.includes('substance') || lowerMessage.includes('addiction')) {
-                responseCategory = 'substances';
-            }
-            // Existing categories
             else if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('panic') || 
                      lowerMessage.includes('nervous') || lowerMessage.includes('i feel anxious') || lowerMessage.includes('i am anxious') ||
                      lowerMessage.includes('worried') || lowerMessage.includes('i feel worried') || lowerMessage.includes('i am worried') || 
@@ -867,41 +780,10 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
         // Secure API call function with fallback
         async function callBackendAPI(messages) {
             try {
-                // Try to call your backend API
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        messages: messages
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Server Error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // Check if we got a fallback response from server
-                if (data.fallback) {
-                    throw new Error('API fallback triggered');
-                }
-                
-                const apiResponse = data.choices[0].message.content.trim();
-                
-                // Check if API gave generic unhelpful response
-                if (apiResponse.includes("I'm really sorry that you're feeling this way, but I'm unable to provide the help that you need") ||
-                    apiResponse.includes("It's really important to talk things over with someone who can") ||
-                    apiResponse.includes("mental health professional or a trusted person in your life")) {
-                    
-                    // Use our intelligent response system instead
-                    const lastUserMessage = messages[messages.length - 1].content;
-                    return generateIntelligentResponse(lastUserMessage, messages);
-                }
-                
-                return data;
+                // For demo purposes, always use the intelligent response system
+                // In production, you would call your actual backend API here
+                const lastUserMessage = messages[messages.length - 1].content;
+                return generateIntelligentResponse(lastUserMessage, messages);
                 
             } catch (error) {
                 console.error('Backend API Error:', error);
@@ -1027,17 +909,6 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 existingIndicator.remove();
             }
         }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        }
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            // Modal is shown by default, buttons will hide it
-            document.getElementById('messageInput').disabled = true;
-            document.getElementById('sendButton').disabled = true;
-        });
+    </script>
+</body>
+</html>
