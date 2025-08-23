@@ -247,6 +247,179 @@
             transform: none;
         }
 
+        /* Popup Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal h2 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal h2::before {
+            content: '⚠️';
+            font-size: 1.2em;
+        }
+
+        .modal p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .important-notes {
+            background: #fff8dc;
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .important-notes h3 {
+            color: #e67e22;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-notes h3::before {
+            content: '📋';
+        }
+
+        .important-notes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .important-notes li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #8b4513;
+        }
+
+        .important-notes li::before {
+            content: '•';
+            color: #e67e22;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .emergency-section h3 {
+            color: #c2185b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-section h3::before {
+            content: '🚨';
+        }
+
+        .emergency-section p {
+            color: #880e4f;
+            font-weight: 600;
+        }
+
+        .emergency-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .emergency-section li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: #ad1457;
+            font-weight: 500;
+        }
+
+        .emergency-section li::before {
+            content: '•';
+            color: #e91e63;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -284,11 +457,60 @@
             .message {
                 max-width: 95%;
             }
+
+            .modal {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
         }
    
     </style>
 </head>
 <body>
+    <!-- Popup Modal -->
+    <div class="modal-overlay" id="disclaimerModal">
+        <div class="modal">
+            <h2>Important Disclaimer</h2>
+            
+            <p>This app is designed to provide emotional support, encouragement, and validation. It is not a substitute for professional medical, psychiatric, or psychological treatment.</p>
+            
+            <p>The content and features within this app are for general well-being, personal growth, and self-reflection purposes only. We are not medical professionals, and this app does not offer medical, clinical, or therapeutic advice.</p>
+            
+            <p>If you are experiencing significant distress, a mental health crisis, or believe you may have a condition requiring diagnosis or treatment, please seek help from a qualified healthcare provider.</p>
+            
+            <div class="important-notes">
+                <h3>Important Notes</h3>
+                <ul>
+                    <li>The app does not provide diagnosis, treatment, prescriptions, or medical interventions.</li>
+                    <li>Use of this app is voluntary and should be considered a complementary tool to professional care, not a replacement.</li>
+                    <li>Any decisions you make based on the information, tools, or suggestions provided are your personal responsibility.</li>
+                </ul>
+            </div>
+            
+            <p>By using this app, you acknowledge and agree that it is intended to provide support, validation, and helpful resources, but it cannot and does not replace the care of licensed professionals.</p>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-primary" onclick="acceptDisclaimer()">I Understand & Agree</button>
+                <button class="btn btn-secondary" onclick="needHelpNow()">I Need Help Now</button>
+            </div>
+            
+            <div class="emergency-section">
+                <h3>Emergency Situations</h3>
+                <p>If you are in immediate danger or experiencing thoughts of harming yourself or others, please call your local emergency number right away.</p>
+                <ul>
+                    <li><strong>In the U.S.:</strong> you can dial 988 for the Suicide & Crisis Lifeline</li>
+                    <li><strong>In the U.K. & Ireland:</strong> you can call Samaritans at 116 123</li>
+                    <li><strong>In Australia:</strong> you can call Lifeline at 13 11 14</li>
+                </ul>
+                <p>If you are outside these regions, please look up local emergency and crisis services in your area.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Logo Header Section -->
         <div class="logo-header">
@@ -402,6 +624,17 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
             online_safety: [], eating: [], substances: [], friendships: []
         };
 
+        // Modal functions
+        function acceptDisclaimer() {
+            document.getElementById('disclaimerModal').style.display = 'none';
+            document.getElementById('messageInput').focus();
+        }
+
+        function needHelpNow() {
+            // Redirect to crisis resources or show emergency contacts
+            alert('Please contact emergency services immediately:\n\nUS: 911 or 988\nUK: 999 or 116 123\nAustralia: 000 or 13 11 14\n\nFor non-emergency crisis support, text HOME to 741741');
+        }
+
         // Comprehensive Mental Health Response System
         function generateIntelligentResponse(userMessage, conversationHistory = []) {
             const responses = {
@@ -470,341 +703,4 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 substances: [
                     "It takes courage to bring up concerns about drinking, drugs, or vaping. What's been on your mind about substance use? Whether it's your own use, pressure from others, or worries about friends, I'm here to listen without judgment.",
                     "When you think about alcohol, drugs, or vaping, what feelings or concerns come up for you? Are you dealing with pressure to try things, worried about how much you or someone else is using, or curious about risks and effects?",
-                    "It sounds like substance use is something that's weighing on you. What specifically has you concerned or confused? Sometimes there can be a lot of conflicting messages about these things, and it can be hard to figure out what's right for you."
-                ],
-
-                // Depression - Deeper exploration
-                depression: [
-                    "I hear that you're feeling sad right now. That takes courage to share. What's been happening in your life that's bringing up this sadness? Sometimes sadness comes from specific situations, and sometimes it just feels present without a clear reason. I'm genuinely curious about what your experience has been like.",
-                    "When you say 'I am sad,' I can sense there's real pain there. What does this sadness feel like for you day-to-day? Is it more of a deep ache, or something that comes and goes in waves? I'm wondering what might be weighing on your heart right now.",
-                    "Thank you for trusting me with how you're feeling. Sadness can be such a heavy emotion to carry. What's been going on that's making you feel this way? Sometimes talking through what's underneath the sadness can help us understand it better."
-                ],
-
-                // Anxiety - Understanding and exploring
-                anxiety: [
-                    "I can hear that you're feeling scared right now. Fear can be such an overwhelming emotion, especially when it feels big and consuming. What's frightening you most at the moment? Sometimes naming our fears can help us understand them better and figure out what might help you feel safer.",
-                    "When you say you're feeling anxious or scared, I can sense there's real distress there. What does this fear feel like in your body and mind? Are there specific thoughts or situations that are triggering these feelings, or does the anxiety seem to come from nowhere? I'm here to listen and explore this with you."
-                ],
-
-                // Loneliness - Compassionate exploration
-                loneliness: [
-                    "I hear that you're feeling lonely right now. Loneliness can be such a painful experience, especially when it feels like you're disconnected from others. What does this loneliness look like for you? Are you physically alone, or is it more that feeling of being around people but still feeling unseen or misunderstood?",
-                    "When you say you feel lonely, I can sense there's a real ache there. What kind of connection are you most missing right now? Is it wanting close friendships, family connection, or maybe just someone who really understands what you're going through? I'm curious about what would help you feel less alone."
-                ],
-
-                // Greeting - Warm and curious
-                greeting: [
-                    "Hello! I'm really glad you're here. This is your space to share whatever's truly on your mind. What brought you here today? Whether it's something specific weighing on you or you're just feeling a bit off and not sure why, I'm here to listen and explore it with you.",
-                    "Hi there! Thank you for reaching out. I'm curious about what's happening in your world right now. What's been occupying your thoughts lately, or what made you want to talk to someone today? Sometimes just starting the conversation can help clarify what we're really feeling."
-                ],
-
-                // General - More open-ended and exploratory
-                general: [
-                    "I can sense there's something weighing on you. What's been occupying your thoughts lately? Sometimes just having space to talk through what's on our minds can help us process things better. What feels most important for you to share right now?",
-                    "It sounds like you're going through something. What's your inner world like at the moment? I'm genuinely curious about your experience and what's been feeling most challenging or confusing for you lately. What would feel helpful to explore together?",
-                    "Thank you for trusting me with whatever you're carrying. What's been on your heart or mind recently? Sometimes we know exactly what we want to talk about, and sometimes we just need space to figure it out. Either way is completely fine - where would you like to start?"
-                ]
-            };
-
-            const lowerMessage = userMessage.toLowerCase();
-            let responseCategory = 'general';
-            
-            // Enhanced detection logic including teenage issues
-            if (lowerMessage.includes('suicidal') || lowerMessage.includes('kill myself') || lowerMessage.includes('want to die') || 
-                lowerMessage.includes('end my life') || lowerMessage.includes('suicide') || lowerMessage.includes('self harm') || 
-                lowerMessage.includes('hurt myself') || lowerMessage.includes('better off dead') || lowerMessage.includes('no point living')) {
-                responseCategory = 'crisis';
-            }
-            // Self-esteem and self-worth
-            else if (lowerMessage.includes('self esteem') || lowerMessage.includes('self-esteem') || lowerMessage.includes('hate myself') || 
-                     lowerMessage.includes('worthless') || lowerMessage.includes('not good enough') || lowerMessage.includes('feel ugly') ||
-                     lowerMessage.includes('i\'m ugly') || lowerMessage.includes('i am ugly') || lowerMessage.includes('confidence') ||
-                     lowerMessage.includes('insecure') || lowerMessage.includes('self worth') || lowerMessage.includes('self-worth')) {
-                responseCategory = 'self_esteem';
-            }
-            // Body image and appearance
-            else if (lowerMessage.includes('body image') || lowerMessage.includes('hate my body') || lowerMessage.includes('too fat') ||
-                     lowerMessage.includes('too skinny') || lowerMessage.includes('too thin') || lowerMessage.includes('weight') ||
-                     lowerMessage.includes('appearance') || lowerMessage.includes('look bad') || lowerMessage.includes('mirror') ||
-                     lowerMessage.includes('body dysmorphia') || lowerMessage.includes('how i look')) {
-                responseCategory = 'body_image';
-            }
-            // Relationships, dating, sex, sexting
-            else if (lowerMessage.includes('relationship') || lowerMessage.includes('dating') || lowerMessage.includes('boyfriend') ||
-                     lowerMessage.includes('girlfriend') || lowerMessage.includes('crush') || lowerMessage.includes('sexting') ||
-                     lowerMessage.includes('sex') || lowerMessage.includes('sexual') || lowerMessage.includes('intimate') ||
-                     lowerMessage.includes('hooking up') || lowerMessage.includes('physical') || lowerMessage.includes('kissing')) {
-                responseCategory = 'relationships';
-            }
-            // Family problems
-            else if (lowerMessage.includes('family') || lowerMessage.includes('parents') || lowerMessage.includes('mom') ||
-                     lowerMessage.includes('dad') || lowerMessage.includes('mother') || lowerMessage.includes('father') ||
-                     lowerMessage.includes('siblings') || lowerMessage.includes('brother') || lowerMessage.includes('sister') ||
-                     lowerMessage.includes('family problems') || lowerMessage.includes('home life') || lowerMessage.includes('arguing with')) {
-                responseCategory = 'family';
-            }
-            // Peer pressure
-            else if (lowerMessage.includes('peer pressure') || lowerMessage.includes('pressure from friends') || lowerMessage.includes('fit in') ||
-                     lowerMessage.includes('friends want me to') || lowerMessage.includes('everyone else is') || lowerMessage.includes('don\'t want to but') ||
-                     lowerMessage.includes('feel pressured') || lowerMessage.includes('have to do') || lowerMessage.includes('popular kids')) {
-                responseCategory = 'peer_pressure';
-            }
-            // Friendships
-            else if (lowerMessage.includes('friends') || lowerMessage.includes('friendship') || lowerMessage.includes('best friend') ||
-                     lowerMessage.includes('friend drama') || lowerMessage.includes('falling out') || lowerMessage.includes('left out') ||
-                     lowerMessage.includes('friend group') || lowerMessage.includes('social circle') || lowerMessage.includes('bullying') ||
-                     lowerMessage.includes('mean girls') || lowerMessage.includes('gossip')) {
-                responseCategory = 'friendships';
-            }
-            // Online safety, social media
-            else if (lowerMessage.includes('online') || lowerMessage.includes('social media') || lowerMessage.includes('instagram') ||
-                     lowerMessage.includes('snapchat') || lowerMessage.includes('tiktok') || lowerMessage.includes('messaging') ||
-                     lowerMessage.includes('stranger online') || lowerMessage.includes('inappropriate messages') || lowerMessage.includes('cyberbullying') ||
-                     lowerMessage.includes('online safety') || lowerMessage.includes('sharing photos') || lowerMessage.includes('privacy')) {
-                responseCategory = 'online_safety';
-            }
-            // Eating disorders and food issues
-            else if (lowerMessage.includes('eating disorder') || lowerMessage.includes('anorexia') || lowerMessage.includes('bulimia') ||
-                     lowerMessage.includes('binge eating') || lowerMessage.includes('not eating') || lowerMessage.includes('starving myself') ||
-                     lowerMessage.includes('purging') || lowerMessage.includes('throwing up') || lowerMessage.includes('food anxiety') ||
-                     lowerMessage.includes('calories') || lowerMessage.includes('diet') || lowerMessage.includes('restrict')) {
-                responseCategory = 'eating';
-            }
-            // Substances - alcohol, drugs, vaping
-            else if (lowerMessage.includes('drinking') || lowerMessage.includes('alcohol') || lowerMessage.includes('drunk') ||
-                     lowerMessage.includes('drugs') || lowerMessage.includes('weed') || lowerMessage.includes('marijuana') ||
-                     lowerMessage.includes('vaping') || lowerMessage.includes('smoking') || lowerMessage.includes('party') ||
-                     lowerMessage.includes('high') || lowerMessage.includes('substance') || lowerMessage.includes('addiction')) {
-                responseCategory = 'substances';
-            }
-            // Existing categories
-            else if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('panic') || 
-                     lowerMessage.includes('nervous') || lowerMessage.includes('i feel anxious') || lowerMessage.includes('i am anxious') ||
-                     lowerMessage.includes('worried') || lowerMessage.includes('i feel worried') || lowerMessage.includes('i am worried') || 
-                     lowerMessage.includes('feel scared') || lowerMessage.includes('i feel scared') || lowerMessage.includes('i am scared') ||
-                     lowerMessage.includes('afraid') || lowerMessage.includes('i feel afraid') || lowerMessage.includes('i am afraid')) {
-                responseCategory = 'anxiety';
-            }
-            else if (lowerMessage.includes('depressed') || lowerMessage.includes('depression') || lowerMessage.includes('sad') || 
-                     lowerMessage.includes('hopeless') || lowerMessage.includes('down') || lowerMessage.includes('low') ||
-                     lowerMessage.includes('i feel sad') || lowerMessage.includes('i am sad') || lowerMessage.includes('feel sad') ||
-                     lowerMessage.includes('i feel down') || lowerMessage.includes('i am down') || lowerMessage.includes('feel down') ||
-                     lowerMessage.includes('i feel depressed') || lowerMessage.includes('i am depressed') || lowerMessage.includes('feel depressed')) {
-                responseCategory = 'depression';
-            }
-            else if (lowerMessage.includes('lonely') || lowerMessage.includes('loneliness') || lowerMessage.includes('alone') || 
-                     lowerMessage.includes('isolated') || lowerMessage.includes('i feel lonely') || lowerMessage.includes('i am lonely') ||
-                     lowerMessage.includes('feel lonely') || lowerMessage.includes('i feel alone') || lowerMessage.includes('i am alone') ||
-                     lowerMessage.includes('feel alone') || lowerMessage.includes('no friends') || lowerMessage.includes('nobody cares')) {
-                responseCategory = 'loneliness';
-            }
-            else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey') ||
-                     lowerMessage.includes('good morning') || lowerMessage.includes('good evening') || lowerMessage.includes('good afternoon')) {
-                responseCategory = 'greeting';
-            }
-            
-            // Get response from category, avoiding repetition
-            const categoryResponses = responses[responseCategory] || responses['general'];
-            const usedCategoryResponses = usedResponses[responseCategory] || [];
-            
-            // Find unused responses
-            const unusedResponses = categoryResponses.filter(response => 
-                !usedCategoryResponses.includes(response)
-            );
-            
-            let selectedResponse;
-            if (unusedResponses.length > 0) {
-                selectedResponse = unusedResponses[Math.floor(Math.random() * unusedResponses.length)];
-            } else {
-                // All responses used, reset and pick one
-                usedResponses[responseCategory] = [];
-                selectedResponse = categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
-            }
-            
-            // Track this response as used
-            if (!usedResponses[responseCategory]) {
-                usedResponses[responseCategory] = [];
-            }
-            usedResponses[responseCategory].push(selectedResponse);
-            
-            return { choices: [{ message: { content: selectedResponse } }] };
-        }
-
-        // Secure API call function with fallback
-        async function callBackendAPI(messages) {
-            try {
-                // Try to call your backend API
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        messages: messages
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Server Error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                // Check if we got a fallback response from server
-                if (data.fallback) {
-                    throw new Error('API fallback triggered');
-                }
-                
-                const apiResponse = data.choices[0].message.content.trim();
-                
-                // Check if API gave generic unhelpful response
-                if (apiResponse.includes("I'm really sorry that you're feeling this way, but I'm unable to provide the help that you need") ||
-                    apiResponse.includes("It's really important to talk things over with someone who can") ||
-                    apiResponse.includes("mental health professional or a trusted person in your life")) {
-                    
-                    // Use our intelligent response system instead
-                    const lastUserMessage = messages[messages.length - 1].content;
-                    return generateIntelligentResponse(lastUserMessage, messages);
-                }
-                
-                return data;
-                
-            } catch (error) {
-                console.error('Backend API Error:', error);
-                // Fall back to intelligent response system
-                const lastUserMessage = messages[messages.length - 1].content;
-                return generateIntelligentResponse(lastUserMessage, messages);
-            }
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const sendButton = document.getElementById('sendButton');
-            const message = input.value.trim();
-            
-            if (message === '') return;
-            
-            // Disable send button and input
-            sendButton.disabled = true;
-            input.disabled = true;
-            
-            // Add user message to chat
-            addMessage(message, 'user');
-            input.value = '';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            try {
-                // Add user message to conversation history
-                conversationHistory.push({
-                    role: 'user',
-                    content: message
-                });
-
-                // Call backend API with intelligent fallback
-                const data = await callBackendAPI(conversationHistory);
-                const aiResponse = data.choices[0].message.content.trim();
-                
-                // Add AI response to conversation history
-                conversationHistory.push({
-                    role: 'assistant',
-                    content: aiResponse
-                });
-
-                // Keep conversation history manageable
-                if (conversationHistory.length > 21) {
-                    conversationHistory = [
-                        conversationHistory[0], // Keep system prompt
-                        ...conversationHistory.slice(-20) // Keep last 20 messages
-                    ];
-                }
-
-                // Add small delay to simulate thinking time
-                setTimeout(() => {
-                    hideTypingIndicator();
-                    addMessage(aiResponse, 'ai');
-                }, 800 + Math.random() * 1200); // 0.8-2 second delay
-
-            } catch (error) {
-                hideTypingIndicator();
-                console.error('Error:', error);
-                
-                // Fallback to intelligent response
-                const fallbackResponse = generateIntelligentResponse(message, conversationHistory);
-                addMessage(fallbackResponse.choices[0].message.content, 'ai');
-            } finally {
-                // Re-enable send button and input
-                sendButton.disabled = false;
-                input.disabled = false;
-                input.focus();
-            }
-        }
-
-        function addMessage(content, sender) {
-            const chatArea = document.getElementById('chatArea');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            
-            if (sender === 'ai') {
-                // Create AI message with avatar
-                messageDiv.innerHTML = `
-                    <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
-                    <div class="ai-message-content">${content}</div>
-                `;
-            } else {
-                // Regular user message
-                messageDiv.textContent = content;
-            }
-            
-            // Remove welcome section after first user message
-            if (sender === 'user') {
-                const welcomeSection = document.querySelector('.welcome-section');
-                if (welcomeSection) {
-                    welcomeSection.remove();
-                }
-            }
-            
-            chatArea.appendChild(messageDiv);
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            // Remove any existing typing indicator first
-            hideTypingIndicator();
-            
-            // Create a new typing indicator
-            const chatArea = document.getElementById('chatArea');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message ai-message';
-            typingDiv.id = 'currentTypingIndicator';
-            typingDiv.innerHTML = `
-                <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/Harper.png" alt="Harper Avatar" class="ai-avatar">
-                <div class="thinking-heart">♥</div>
-            `;
-            
-            chatArea.appendChild(typingDiv);
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const existingIndicator = document.getElementById('currentTypingIndicator');
-            if (existingIndicator) {
-                existingIndicator.remove();
-            }
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        }
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('messageInput').focus();
-        });
-    </script>
-</body>
-</html>
+                    "It sounds like substance use is something that
