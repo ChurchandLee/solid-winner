@@ -61,18 +61,31 @@
             text-align: center;
             color: white;
             border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Compact header state */
+        .logo-header.compact {
+            padding: 15px;
         }
 
         .logo {
-           width: 200px;
-    height: 200px;
-    margin: 0 auto 15px auto;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px auto;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Compact logo state */
+        .logo-header.compact .logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
         }
 
         .logo:hover {
@@ -84,6 +97,12 @@
             font-size: 1.2em;
             font-weight: 600;
             margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hide text in compact mode */
+        .logo-header.compact p {
+            display: none;
         }
 
         .chat-area {
@@ -457,6 +476,11 @@
                 width: 160px;
                 height: 160px;
             }
+
+            .logo-header.compact .logo {
+                width: 50px;
+                height: 50px;
+            }
             
             .message {
                 max-width: 95%;
@@ -517,7 +541,7 @@
 
     <div class="container">
         <!-- Logo Header Section -->
-        <div class="logo-header">
+        <div class="logo-header" id="logoHeader">
             <div class="logo">
                 <img src="https://raw.githubusercontent.com/ChurchandLee/solid-winner/main/HEARPOW.png" alt="Hear Logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 10;">
             </div>   
@@ -873,12 +897,16 @@ Remember: Your goal is meaningful conversation and exploration, not immediate pr
                 messageDiv.textContent = content;
             }
             
-            // Remove welcome section after first user message
+            // Remove welcome section and make header compact after first user message
             if (sender === 'user') {
                 const welcomeSection = document.querySelector('.welcome-section');
                 if (welcomeSection) {
                     welcomeSection.remove();
                 }
+                
+                // Make header compact
+                const logoHeader = document.getElementById('logoHeader');
+                logoHeader.classList.add('compact');
             }
             
             chatArea.appendChild(messageDiv);
